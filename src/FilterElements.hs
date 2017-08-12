@@ -1,10 +1,10 @@
 -- https://www.hackerrank.com/challenges/filter-elements
 
-module FilterElement where
+module FilterElements where
 
-import Control.Monad (replicateM)
-import Data.Maybe (mapMaybe, listToMaybe)
-import Data.List (group, sort)
+import           Control.Monad (replicateM)
+import           Data.List     (group, sort)
+import           Data.Maybe    (listToMaybe, mapMaybe)
 -- import Data.List.Split.Internals (chunksOf)
 
 chunksOf :: Int -> [a] -> [[a]]
@@ -36,7 +36,7 @@ data Result = ListResult [Int] | NotFound
 
 instance Show Result where
     show (ListResult ls) = show ls
-    show NotFound = "-1"
+    show NotFound        = "-1"
 
 listToResult :: [Int] -> Result
 listToResult [] = NotFound

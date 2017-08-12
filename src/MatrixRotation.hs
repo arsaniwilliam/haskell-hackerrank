@@ -1,24 +1,30 @@
+-- https://www.hackerrank.com/challenges/matrix-rotation
 {-# LANGUAGE OverloadedStrings #-}
 
 module MatrixRotation where
 
 import           Control.Monad   (replicateM)
-import           Data.List.Utils (splitOn)
+import           Data.List.Split (splitOn)
+import           Data.Matrix
 
 main :: IO ()
 main = do
   (m:n:r:_) <- lineToNumbers <$> readLn
   matrix <- map lineToNumbers <$> replicateM m readLn
-  return . mapM_ (putStrLn . numbersToLine) $ rotateMatrix r matrix
+  mapM_ putStrLn . numbersToLine . rotateMatrixOnce  $ matrix
 
 lineToNumbers = map readInt . splitOn " "
-numbersToLine = mconcat . unwords
+
+numbersToLine :: [[Int]] -> [String]
+numbersToLine = map $ unwords . map show
 
 readInt :: String -> Int
 readInt = read
 
 rotateMatrixOnce :: [[a]] -> [[a]]
 rotateMatrixOnce = id
+
+
 
 {-
 
